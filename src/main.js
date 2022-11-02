@@ -7,6 +7,7 @@ import * as echarts from 'echarts'
 import img from './lib/img'
 import utils from "./lib/utils";
 import hint from '@/common/hint' // message提示
+import store from '@/store/index.js'
 
 Vue.prototype.$echarts = function (el) {
     return echarts.init(el, null, {renderer: 'svg'})
@@ -18,5 +19,6 @@ Vue.use(iView);
 Vue.use(utils)
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

@@ -5,12 +5,16 @@
 </template>
 
 <script>
+import Sever from "@/api/selfApi";
 export default {
   name: "App",
   data() {
     return {
       resizeFn: null,
     };
+  },
+  created() {
+    this.initGlobalMenu();
   },
   mounted() {
     const documentWidth = document.body.offsetWidth;
@@ -29,6 +33,30 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.resizeFn);
+  },
+  methods: {
+    async initGlobalMenu() {
+      console.log("初始化");
+      try {
+        //请求后台接口
+        const res = await Sever.smz.getMenu({
+          //请求参数
+          dep_code: "45000",
+        });
+        if (res) {
+          this.$store.dispatch("getMenus", {
+            part1: "part2",
+            part2: "part2",
+            part3: "part3",
+            part6: "part6",
+            part7: "part7",
+            part8: "part8",
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>

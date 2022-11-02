@@ -2,14 +2,25 @@
   <div style="height: 100%">
     <div class="visual_left">
       <div class="visual_box">
-        <component :is="currentView" @changePart="changePart"></component>
+        <component
+          :is="this.$store.state.menus.part1"
+          :partName="partName1"
+        ></component>
         <!-- <part-1 @changePart="changePart" /> -->
       </div>
       <div class="visual_box">
-        <part-2 />
+        <!-- <part-2 /> -->
+        <component
+          :is="this.$store.state.menus.part2"
+          :partName="partName2"
+        ></component>
       </div>
       <div class="visual_box">
-        <part-3 />
+        <!-- <part-3 /> -->
+        <component
+          :is="this.$store.state.menus.part3"
+          :partName="partName3"
+        ></component>
       </div>
     </div>
     <div class="visual_con">
@@ -26,13 +37,27 @@
       </div>
     </div>
     <div class="visual_right">
-      <div class="visual_box"><part-6 /></div>
+      <div class="visual_box">
+        <!-- <part-6 /> -->
+        <component
+          :is="this.$store.state.menus.part6"
+          :partName="partName6"
+        ></component>
+      </div>
       <div class="visual_box visualSfzsfl">
-        <part-7 />
+        <!-- <part-7 /> -->
+        <component
+          :is="this.$store.state.menus.part7"
+          :partName="partName7"
+        ></component>
       </div>
 
       <div class="visual_box">
-        <part-8 />
+        <!-- <part-8 /> -->
+        <component
+          :is="this.$store.state.menus.part8"
+          :partName="partName8"
+        ></component>
       </div>
     </div>
   </div>
@@ -59,10 +84,14 @@ export default {
   },
   data() {
     return {
-      currentView: "part1",
+      partName1: "part1",
+      partName2: "part2",
+      partName3: "part3",
+      partName6: "part6",
+      partName7: "part7",
+      partName8: "part8",
     };
   },
-  mounted() {},
   methods: {
     refreshEcharts(val) {
       console.log("地图改变了" + val);

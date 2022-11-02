@@ -45,6 +45,9 @@
 <script>
 import digitalFlop from "@/views/components/smz/digitalFlop.vue";
 export default {
+  props: {
+    partName: String,
+  },
   components: {
     digitalFlop,
   },
@@ -66,8 +69,11 @@ export default {
       } else if (val == "part8") {
         this.MenuText = "近5年退休人员预测";
       }
-      localStorage.setItem('part1')
-      this.$emit("changePart", val);
+      //TODO 预留全局接口（配置菜单）后台保存选中菜单
+      // this.$emit("changePart", val);
+      let obj = {};
+      obj[this.partName] = val;
+      this.$store.dispatch("refreshMenu", obj);
     },
   },
 };
