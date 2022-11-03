@@ -3,7 +3,7 @@
     <div class="visual_title">
       <Dropdown @on-click="changePart">
         <a href="javascript:void(0)" v-html="this.MenuText">
-          累计办理业务笔数
+          分系统编制情况
         </a>
         <DropdownMenu slot="list">
           <DropdownItem name="part1" :selected="MenuText == '累计办理业务笔数'"
@@ -42,35 +42,23 @@
             :selected="MenuText == '分系统编制情况'"
             >分系统编制情况</DropdownItem
           >
-          <DropdownItem
-            divided
-            name="part10"
-            :selected="MenuText == '问题类型分析'"
-            >问题类型分析</DropdownItem
-          >
-          <DropdownItem
-            divided
-            name="part11"
-            :selected="MenuText == '测试下拉'"
-            >测试下拉</DropdownItem
-          >
         </DropdownMenu>
       </Dropdown>
     </div>
-    <digitalFlop :number="1234567" />
+    <establishment-of-the-subsystem></establishment-of-the-subsystem>
   </div>
 </template>
 <script>
-import digitalFlop from "@/views/components/smz/digitalFlop.vue";
+import establishmentOfTheSubsystem from "@/views/components/smz/establishmentOfTheSubsystem.vue";
 export default {
   props: {
     partName: String,
   },
   components: {
-    digitalFlop,
+    establishmentOfTheSubsystem,
   },
   data() {
-    return { MenuText: "累计办理业务笔数" };
+    return { MenuText: "年度业务办理量" };
   },
   methods: {
     changePart(val) {
@@ -88,10 +76,6 @@ export default {
         this.MenuText = "近5年退休人员预测";
       } else if (val == "part9") {
         this.MenuText = "分系统编制情况";
-      } else if (val == "part10") {
-        this.MenuText = "问题类型分析";
-      } else if (val == "part11") {
-        this.MenuText = "测试下拉";
       }
       //TODO 预留全局接口（配置菜单）后台保存选中菜单
       // this.$emit("changePart", val);
@@ -108,6 +92,3 @@ a {
   font-size: 18px;
 }
 </style>
-
-
-

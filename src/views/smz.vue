@@ -71,6 +71,9 @@ import part5 from "@/views/components/smz/part5.vue";
 import part6 from "@/views/components/smz/part6.vue";
 import part7 from "@/views/components/smz/part7.vue";
 import part8 from "@/views/components/smz/part8.vue";
+import part9 from "@/views/components/smz/part9.vue";
+import part10 from "@/views/components/smz/part10.vue";
+import part11 from "@/views/components/smz/part11.vue";
 export default {
   components: {
     part1,
@@ -81,6 +84,9 @@ export default {
     part6,
     part7,
     part8,
+    part9,
+    part10,
+    part11,
   },
   data() {
     return {

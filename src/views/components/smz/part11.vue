@@ -2,9 +2,7 @@
   <div class="lineback">
     <div class="visual_title">
       <Dropdown @on-click="changePart">
-        <a href="javascript:void(0)" v-html="this.MenuText">
-          累计办理业务笔数
-        </a>
+        <a href="javascript:void(0)" v-html="this.MenuText"> 问题类型分析 </a>
         <DropdownMenu slot="list">
           <DropdownItem name="part1" :selected="MenuText == '累计办理业务笔数'"
             >累计办理业务笔数</DropdownItem
@@ -48,29 +46,26 @@
             :selected="MenuText == '问题类型分析'"
             >问题类型分析</DropdownItem
           >
-          <DropdownItem
-            divided
-            name="part11"
-            :selected="MenuText == '测试下拉'"
+          <DropdownItem divided name="part10" :selected="MenuText == '测试下拉'"
             >测试下拉</DropdownItem
           >
         </DropdownMenu>
       </Dropdown>
     </div>
-    <digitalFlop :number="1234567" />
+    <business-management-information></business-management-information>
   </div>
 </template>
 <script>
-import digitalFlop from "@/views/components/smz/digitalFlop.vue";
+import businessManagementInformation from "@/views/components/smz/businessManagementInformation.vue";
 export default {
   props: {
     partName: String,
   },
   components: {
-    digitalFlop,
+    businessManagementInformation,
   },
   data() {
-    return { MenuText: "累计办理业务笔数" };
+    return { MenuText: "问题类型分析" };
   },
   methods: {
     changePart(val) {
@@ -108,6 +103,3 @@ a {
   font-size: 18px;
 }
 </style>
-
-
-
