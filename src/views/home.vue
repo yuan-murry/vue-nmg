@@ -83,7 +83,12 @@ export default {
     changeContent(val) {
       if (val != "smz") {
         // this.$router.push({ name: "smz" });
+        document.getElementById("theme").href = "/css/visual_red.css";
+        this.$store.dispatch("changeTheme", "red");
         Message.info("该菜单暂未开放功能");
+      } else {
+        document.getElementById("theme").href = "/css/visual_dark.css";
+        this.$store.dispatch("changeTheme", "dark");
       }
     },
     change(index) {
@@ -92,9 +97,6 @@ export default {
   },
 };
 </script>
-<style scoped>
-@import "~@/assets/css/visual.css";
-</style>
 <style scoped>
 .active {
   color: #f4a460;

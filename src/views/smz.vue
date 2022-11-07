@@ -25,10 +25,10 @@
     </div>
     <div class="visual_con">
       <div class="visual_conBot">
-        <img class="visual_conBot_l" src="@/assets/images/ksh42.png" />
-        <img class="visual_conBot_2" src="@/assets/images/ksh43.png" />
-        <img class="visual_conBot_3" src="@/assets/images/ksh44.png" />
-        <img class="visual_conBot_4" src="@/assets/images/ksh45.png" />
+        <img class="visual_conBot_l" src="/images/ksh42.png" />
+        <img class="visual_conBot_2" src="/images/ksh43.png" />
+        <img class="visual_conBot_3" src="/images/ksh44.png" />
+        <img class="visual_conBot_4" src="/images/ksh45.png" />
         <div class="visual_conTop">
           <part-4 />
           <div class="clear"></div>

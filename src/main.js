@@ -4,7 +4,6 @@ import router from './router'
 import iView from 'iview';
 import './assets/less/index.less';
 import * as echarts from 'echarts'
-import img from './lib/img'
 import utils from "./lib/utils";
 import hint from '@/common/hint' // message提示
 import store from '@/store/index.js'
@@ -12,7 +11,6 @@ import store from '@/store/index.js'
 Vue.prototype.$echarts = function (el) {
     return echarts.init(el, null, {renderer: 'svg'})
 }
-Vue.prototype.$images = img
 Vue.prototype.$hint = hint
 Vue.config.productionTip = false;
 Vue.use(iView);

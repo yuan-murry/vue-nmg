@@ -9,6 +9,15 @@ a, p, h1, h2, h3, h4, h5, h6, body, span, label, div {
 	padding: 0
 }
 
+body {
+	height: 100%;
+	/* background: url("/images/data08.png") no-repeat #061537; */
+	background-color: red;
+	background-size: cover;
+	position: relative;
+	z-index: -2;
+}
+
 div {
 	font-family: 'Microsoft YaHei', 'PingFang SC', 'Arial Normal', 'Arial', 'Source Han Sans SC', 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', 'sans-serif';
 }
@@ -57,7 +66,7 @@ html, body, form {
 	font-family: yjsz;
 	src: url('../font/yjsz.TTF'),
 		/* url('../fonts/yjsz.eot'); */
-	/* IE9+,可以是具体的实际链接 */
+		/* IE9+,可以是具体的实际链接 */
 }
 
 
@@ -715,7 +724,7 @@ html, body, form {
 	color: #fff;
 	padding: 5px;
 	position: relative;
-	border-radius:5px;
+	border-radius: 5px;
 }
 
 .mt3_one p, .mt3_two p, .mt3_three p {
@@ -815,7 +824,7 @@ html, body, form {
 	width: 150px;
 	height: 150px;
 	background: url('../images/circle.png') top no-repeat;
-	background-size:100% 100%;
+	background-size: 100% 100%;
 	position: relative;
 	float: left;
 }
@@ -941,4 +950,10 @@ html, body, form {
 	animation: mymove 5s linear infinite;
 	z-index: 89;
 }
-.curbg{width:230px; height: 30px;background: url(../images/databg1.png) no-repeat; background-size:100% 100%;}
+
+.curbg {
+	width: 230px;
+	height: 30px;
+	background: url(../images/databg1.png) no-repeat;
+	background-size: 100% 100%;
+}
