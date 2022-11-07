@@ -45,7 +45,7 @@ export default {
         });
         if (res) {
           this.$store.dispatch("getMenus", {
-            part1: "part2",
+            part1: "part1",
             part2: "part2",
             part3: "part3",
             part6: "part6",
