@@ -24,7 +24,7 @@ export default new Vuex.Store({
                 // state.theme = 'red'
                 console.log(res)
                 state.menus = {
-                    part1: "part2",
+                    part1: "part1",
                     part2: "part2",
                     part3: "part3",
                     part6: "part6",
