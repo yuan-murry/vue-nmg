@@ -1,9 +1,3 @@
-<!--
- 描述: 新闻无缝滚动
- 作者: Jack Chen
- 日期: 2020-04-18
--->
-
 <template>
   <div
     class="three-info mt40 bbsInfo"
@@ -17,26 +11,11 @@
           :key="item.topicId"
           class="info-item flex align-items"
         >
-          <div
-            style="flex: 1;float:left"
-            :data-id="item.title"
-          >
-            {{ item.title }}
-          </div>
-          <div
-            class="fontSize26 color3 van-ellipsis"
-            style="flex: 1;float:left"
-            :data-id="item.title"
-          >
-            {{ item.date }}
-          </div>
-          <div
-            class="fontSize26 color3 van-ellipsis"
-            style="flex: 1;float:left"
-            :data-id="item.title"
-          >
-            {{ item.hot }}
-          </div>
+          <!-- <div style="flex: 1; float: left" :data-id="item.title">
+            {{ item.date }} {{ item.title | ellipsis }}
+          </div> -->
+          <span class="title_new">{{ item.title | ellipsis }}</span>
+          <span class="date">{{ item.date }}</span>
         </li>
       </ul>
     </vue-seamless-scroll>
@@ -47,7 +26,6 @@
 import vueSeamlessScroll from "vue-seamless-scroll";
 
 export default {
-  name: "seamless",
   components: {
     vueSeamlessScroll,
   },
@@ -55,7 +33,8 @@ export default {
     return {
       bbsData: [
         {
-          title: "钱花哪了?一图带你读懂年轻人的消费观",
+          title:
+            "钱花哪了?一图带你读懂年轻人的消费观钱花哪了?一图带你读懂年轻人的消费观钱花哪了?一图带你读懂年轻人的消费观钱花哪了?一图带你读懂年轻人的消费观",
           date: "2020-05-05",
           hot: 2306,
         },
@@ -127,11 +106,20 @@ export default {
       ],
     };
   },
+  filters: {
+    ellipsis(value) {
+      if (!value) return "";
+      if (value.length > 40) {
+        return value.slice(0, 40) + "...";
+      }
+      return value;
+    },
+  },
   computed: {
     optionSetting() {
       return {
         step: 0.5, // 数值越大速度滚动越快
-        limitMoveNum: 2, // 开始无缝滚动的数据量 this.dataList.length
+        limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
         hoverStop: true, // 是否开启鼠标悬停stop
         direction: 1, // 0向下 1向上 2向左 3向右
         // autoPlay: false,
@@ -143,38 +131,40 @@ export default {
     },
   },
   mounted() {},
-  methods: {},
+  methods: {
+    handleBBs(event) {
+      console.log(event);
+    },
+  },
   beforeDestroy() {},
 };
 </script>
 
 <style scoped>
 .three-info {
-  height: calc(100% - 45px);
+  height: calc(100% - 50px);
+  width: 100%;
   padding: 0 20px 20px;
   border-radius: 10px;
 }
 
 .info-item {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid #60b5ee;
+}
+.title_new {
   padding-top: 20px;
-  border-bottom: 1px solid #f1f6f8;
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
 }
 
-.info-item .info-tag {
-  width: 62px;
-  padding: 6px 10px;
-  background: #3e91ff;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-}
 .bbsInfo {
   margin-top: 10px;
-  height: 82%;
+  height: 80%;
   overflow: hidden;
-}
-.info-item .bbs-tag {
-  background: #faaf3d;
 }
 </style>
