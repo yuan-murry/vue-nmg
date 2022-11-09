@@ -46,8 +46,8 @@
             :selected="MenuText == '问题类型分析'"
             >问题类型分析</DropdownItem
           >
-          <DropdownItem divided name="part10" :selected="MenuText == '测试下拉'"
-            >测试下拉</DropdownItem
+          <DropdownItem divided name="part10" :selected="MenuText == '业务信息详情'"
+            >业务信息详情</DropdownItem
           >
         </DropdownMenu>
       </Dropdown>
@@ -86,7 +86,7 @@ export default {
       } else if (val == "part10") {
         this.MenuText = "问题类型分析";
       } else if (val == "part11") {
-        this.MenuText = "测试下拉";
+        this.MenuText = "业务信息详情";
       }
       //TODO 预留全局接口（配置菜单）后台保存选中菜单
       // this.$emit("changePart", val);
