@@ -61,7 +61,9 @@
   </div>
 </template>
 <script>
+import Sever from "@/api/selfApi";
 import digitalFlop from "@/views/components/smz/digitalFlop.vue";
+import { Message } from "iview";
 export default {
   props: {
     partName: String,
@@ -98,6 +100,20 @@ export default {
       let obj = {};
       obj[this.partName] = val;
       this.$store.dispatch("refreshMenu", obj);
+      this.saveMenu();
+    },
+    async saveMenu() {
+      await Sever.smz
+        .saveMenu(this.$store.state.menus)
+        .then((res) => {
+          if (res == "success") {
+            Message.info("保存成功");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          Message.info("保存失败");
+        });
     },
   },
 };

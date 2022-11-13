@@ -46,7 +46,7 @@
             :selected="MenuText == '问题类型分析'"
             >问题类型分析</DropdownItem
           >
-          <DropdownItem divided name="part10" :selected="MenuText == '业务信息详情'"
+          <DropdownItem divided name="part11" :selected="MenuText == '业务信息详情'"
             >业务信息详情</DropdownItem
           >
         </DropdownMenu>

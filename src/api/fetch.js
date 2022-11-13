@@ -83,7 +83,8 @@ Util.ajax.interceptors.response.use(
         return hint.erro('权限不足!')
       } else if (response.status === 500) {
         // 处理500错误
-        return hint.erro('后端数据处理异常!')
+        // return hint.erro('后端数据处理异常!')
+        return Promise.reject(response)
       }
     }
     // MessageBox({

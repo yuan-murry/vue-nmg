@@ -7,6 +7,9 @@ export default {
     },
     getMenu(params) {
       return fetch.get('/api/query/menu.do', params)
+    },
+    saveMenu(params) {
+      return fetch.post('/api/query/saveMenu.do', params)
     }
   }
 }
