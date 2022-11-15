@@ -3,7 +3,7 @@
     <div class="tableHead">
       <div
         class="tableHeadItem"
-        v-for="(item, index) in head"
+        v-for="(item, index) in dataTitle"
         :key="index"
         :style="{ flex: item.flex }"
       >
@@ -11,11 +11,11 @@
       </div>
     </div>
     <vue-seamless-scroll
-      :data="list"
+      :data="dataList"
       :class-option="defaultOption"
       class="tableBody"
     >
-      <div class="tableBody2" v-for="(item, index) in list" :key="index">
+      <div class="tableBody2" v-for="(item, index) in dataList" :key="index">
         <div class="tableBody2Item">
           {{ item.title }}
         </div>
@@ -32,54 +32,6 @@ import vueSeamlessScroll from "vue-seamless-scroll";
 
 export default {
   components: { vueSeamlessScroll },
-  props: {
-    list: {
-      type: Array,
-      default() {
-        return [
-          {
-            title: "呼和浩特",
-            date: "**************厅",
-          },
-          {
-            title: "包头",
-            date: "***************局",
-          },
-          {
-            title: "呼伦贝尔",
-            date: "**************信息中心",
-          },
-          {
-            title: "阿拉善盟",
-            date: "********单位",
-          },
-          {
-            title: "赤峰",
-            date: "********所",
-          },
-          {
-            title: "巴彦淖尔",
-            date: "********部门",
-          },
-        ];
-      },
-    },
-    head: {
-      type: Array,
-      default() {
-        return [
-          {
-            title: "所属地区",
-            flex: 1.2,
-          },
-          {
-            title: "机构名称",
-            flex: 1,
-          },
-        ];
-      },
-    },
-  },
   computed: {
     defaultOption() {
       return {
@@ -95,7 +47,44 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      dataList: [
+        {
+          title: "呼和浩特",
+          date: "**************厅",
+        },
+        {
+          title: "包头",
+          date: "***************局",
+        },
+        {
+          title: "呼伦贝尔",
+          date: "**************信息中心",
+        },
+        {
+          title: "阿拉善盟",
+          date: "********单位",
+        },
+        {
+          title: "赤峰",
+          date: "********所",
+        },
+        {
+          title: "巴彦淖尔",
+          date: "********部门",
+        },
+      ],
+      dataTitle: [
+        {
+          title: "所属地区",
+          flex: 1.2,
+        },
+        {
+          title: "机构名称",
+          flex: 1,
+        },
+      ],
+    };
   },
   watch: {},
   mounted() {},
@@ -113,7 +102,7 @@ export default {
 
   .tableHead {
     width: 100%;
-    height: 26px;
+    height: 36px;
     background: rgba(#013367, 0.8);
     display: flex;
     justify-content: center;
@@ -138,11 +127,11 @@ export default {
 
   .tableBody {
     position: relative;
-    height: calc(100% - 26px);
+    height: calc(100% - 36px);
     overflow: hidden;
 
     .tableBody2 {
-      min-height: 26px;
+      min-height: 36px;
       padding-top: 5px;
       padding-bottom: 5px;
       background: rgba(#031f3d, 0.8);
