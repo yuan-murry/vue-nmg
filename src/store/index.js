@@ -22,7 +22,7 @@ export default new Vuex.Store({
             }).then(res => {
                 // document.getElementById("theme").href = "/css/visual_red.css";
                 // state.theme = 'red'
-                state.menus = res
+                state.menus = JSON.parse(res)
 
             }).catch(err => {
                 console.log(err)

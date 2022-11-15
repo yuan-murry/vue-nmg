@@ -1,23 +1,28 @@
 <template>
-  <div
-    class="three-info mt40 bbsInfo"
-    v-if="bbsData.length > 0"
-    @click.stop="handleBBs($event)"
-  >
-    <vue-seamless-scroll :data="bbsData" :class-option="optionSetting">
-      <ul class="ul-scoll">
-        <li
-          v-for="item in bbsData"
-          :key="item.topicId"
-          class="info-item flex align-items"
-        >
-          <!-- <div style="flex: 1; float: left" :data-id="item.title">
-            {{ item.date }} {{ item.title | ellipsis }}
-          </div> -->
-          <span class="title_new">{{ item.title | ellipsis }}</span>
-          <span class="date">{{ item.date }}</span>
-        </li>
-      </ul>
+  <div class="tableCom">
+    <div class="tableHead">
+      <div
+        class="tableHeadItem"
+        v-for="(item, index) in head"
+        :key="index"
+        :style="{ flex: item.flex }"
+      >
+        {{ item.title }}
+      </div>
+    </div>
+    <vue-seamless-scroll
+      :data="list"
+      :class-option="defaultOption"
+      class="tableBody"
+    >
+      <div class="tableBody2" v-for="(item, index) in list" :key="index">
+        <div class="tableBody2Item">
+          {{ item.title }}
+        </div>
+        <div class="tableBody2Item">
+          {{ item.date }}
+        </div>
+      </div>
     </vue-seamless-scroll>
   </div>
 </template>
@@ -26,103 +31,62 @@
 import vueSeamlessScroll from "vue-seamless-scroll";
 
 export default {
-  components: {
-    vueSeamlessScroll,
-  },
-  data() {
-    return {
-      bbsData: [
-        {
-          title:
-            "钱花哪了?一图带你读懂年轻人的消费观钱花哪了?一图带你读懂年轻人的消费观钱花哪了?一图带你读懂年轻人的消费观钱花哪了?一图带你读懂年轻人的消费观",
-          date: "2020-05-05",
-          hot: 2306,
-        },
-        {
-          title: "“五一”假期前三天国内旅游收入超350亿元",
-          date: "2020-05-02",
-          hot: 5689,
-        },
-        {
-          title: "滴滴、美团、哈啰交战，本地生活会是终局？",
-          date: "2020-05-02",
-          hot: 9,
-        },
-        {
-          title: "“互联网+文化”逆势上行文娱消费云端真精彩",
-          date: "2020-04-25",
-          hot: 288,
-        },
-        {
-          title: "乐观还是悲观？巴菲特是个现实主义者！",
-          date: "2020-04-21",
-          hot: 158,
-        },
-        {
-          title: "B站的后浪，会把爱优腾拍在沙滩上吗?",
-          date: "2020-04-20",
-          hot: 889,
-        },
-        {
-          title: "华为如何做投资的：先给两亿订单一年上市",
-          date: "2020-04-01",
-          hot: 5800,
-        },
-        {
-          title: "马斯克：特斯拉股价太高了，我要卖豪宅",
-          date: "2020-03-25",
-          hot: 6,
-        },
-        {
-          title: "人民日报海外版：云模式巧解“就业难”",
-          date: "2020-03-16",
-          hot: 88,
-        },
-        {
-          title: '刚刚港股"崩了"：狂跌近1000点！',
-          date: "2020-03-12",
-          hot: 88,
-        },
-        {
-          title: "个人健康信息码国家标准发布",
-          date: "2020-02-28",
-          hot: 5,
-        },
-        {
-          title: "传软银国际裁员约10%两名管理合伙人离职",
-          date: "2020-02-15",
-          hot: 258,
-        },
-        {
-          title: "27万个岗位：区块链、人工智能等专场招聘",
-          date: "2020-02-10",
-          hot: 198,
-        },
-        {
-          title: "一季度电商发展势头迅猛农村电商破1300万家",
-          date: "2020-02-08",
-          hot: 19,
-        },
-      ],
-    };
-  },
-  filters: {
-    ellipsis(value) {
-      if (!value) return "";
-      if (value.length > 40) {
-        return value.slice(0, 40) + "...";
-      }
-      return value;
+  components: { vueSeamlessScroll },
+  props: {
+    list: {
+      type: Array,
+      default() {
+        return [
+          {
+            title: "呼和浩特",
+            date: "**************厅",
+          },
+          {
+            title: "包头",
+            date: "***************局",
+          },
+          {
+            title: "呼伦贝尔",
+            date: "**************信息中心",
+          },
+          {
+            title: "阿拉善盟",
+            date: "********单位",
+          },
+          {
+            title: "赤峰",
+            date: "********所",
+          },
+          {
+            title: "巴彦淖尔",
+            date: "********部门",
+          },
+        ];
+      },
+    },
+    head: {
+      type: Array,
+      default() {
+        return [
+          {
+            title: "所属地区",
+            flex: 1.2,
+          },
+          {
+            title: "机构名称",
+            flex: 1,
+          },
+        ];
+      },
     },
   },
   computed: {
-    optionSetting() {
+    defaultOption() {
       return {
-        step: 0.5, // 数值越大速度滚动越快
-        limitMoveNum: 3, // 开始无缝滚动的数据量 this.dataList.length
+        step: 0.3, // 数值越大速度滚动越快
+        limitMoveNum: 1, // 开始无缝滚动的数据量 this.dataList.length
         hoverStop: true, // 是否开启鼠标悬停stop
         direction: 1, // 0向下 1向上 2向左 3向右
-        // autoPlay: false,
         openWatch: true, // 开启数据实时监控刷新dom
         singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
         singleWidth: 0, // 单步运动停止的宽度(默认值0是无缝不停止的滚动) direction => 2/3
@@ -130,41 +94,87 @@ export default {
       };
     },
   },
-  mounted() {},
-  methods: {
-    handleBBs(event) {
-      console.log(event);
-    },
+  data() {
+    return {};
   },
-  beforeDestroy() {},
+  watch: {},
+  mounted() {},
+  methods: {},
 };
 </script>
 
-<style scoped>
-.three-info {
-  height: calc(100% - 50px);
-  width: 100%;
-  padding: 0 20px 20px;
-  border-radius: 10px;
-}
-
-.info-item {
-  padding-bottom: 10px;
-  padding-top: 10px;
-  border-bottom: 1px solid #60b5ee;
-}
-.title_new {
-  padding-top: 20px;
-  position: absolute;
-  display: inline-block;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
-}
-
-.bbsInfo {
-  margin-top: 10px;
+<style lang="scss" scoped>
+.tableCom {
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  position: relative;
   height: 80%;
   overflow: hidden;
+
+  .tableHead {
+    width: 100%;
+    height: 26px;
+    background: rgba(#013367, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
+    .tableHeadItem {
+      font-size: 14px;
+      font-family: PingFang;
+      font-weight: 500;
+      color: #dcebfc;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      padding-left: 5px;
+      flex: 1;
+    }
+  }
+
+  .tableBody {
+    position: relative;
+    height: calc(100% - 26px);
+    overflow: hidden;
+
+    .tableBody2 {
+      min-height: 26px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background: rgba(#031f3d, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      flex-direction: row;
+
+      .tableBody2Item {
+        font-size: 14px;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #dcebfc;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        padding-left: 5px;
+        flex: 1;
+      }
+    }
+
+    .tableBody2:nth-child(even) {
+      background: rgba(1, 51, 103, 0.8);
+    }
+  }
+
+  .status {
+    color: rgba(13, 206, 242, 1);
+  }
 }
 </style>
+

@@ -212,7 +212,6 @@ export default {
       //       dep_code: "45000",
       //     });
       //     if (res) {
-      //       console.log("请求成功22了。。。。。", res);
       //       this.setChart();
       //     }
       //   } catch (error) {

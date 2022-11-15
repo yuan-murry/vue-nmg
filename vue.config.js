@@ -34,7 +34,7 @@ module.exports = {
         disableHostCheck: true,
         proxy: {
             '/api': {
-                target: process.env.VUE_APP_BASE_API || 'http://localhost:8082',
+                target: process.env.VUE_APP_BASE_API || 'http://localhost:8081',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''
