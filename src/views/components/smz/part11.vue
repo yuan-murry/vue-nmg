@@ -16,7 +16,7 @@ export default {
     selectPart,
   },
   data() {
-    return { MenuText: "业务信息详情" };
+    return { MenuText: "业务办理详情" };
   },
   methods: {},
 };

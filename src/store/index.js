@@ -5,7 +5,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: { //唯一数据源，我理解为声明全局变量
         menus: { part1: 'part1', part2: 'part2', part3: 'part3', part6: 'part6', part7: 'part7', part8: 'part8' },
-        theme: 'dark'
+        theme: "blue",
     },
     getters: {//针对state数据的过滤，
 
@@ -20,9 +20,19 @@ export default new Vuex.Store({
                 //请求参数
                 dep_code: "45000",
             }).then(res => {
-                // document.getElementById("theme").href = "/css/visual_red.css";
-                // state.theme = 'red'
-                state.menus = JSON.parse(res)
+                console.log(res)
+                if (res.menus != null) {
+                    state.menus = JSON.parse(res.menus)
+                }
+                if (res.theme != null) {
+                    state.theme = res.theme
+                    document.getElementById("theme").href = `/css/skin_${res.theme}.css`;
+                    let script = document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src = `/js/bg_${res.theme}.js`;
+                    script.id = "theme_bg";
+                    document.getElementsByTagName("body")[0].appendChild(script);
+                }
 
             }).catch(err => {
                 console.log(err)

@@ -10,6 +10,9 @@ export default {
     },
     saveMenu(params) {
       return fetch.post('/api/query/saveMenu.do', params)
+    },
+    saveTheme(params) {
+      return fetch.post('/api/query/saveTheme.do', params)
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%">
+  <div class="visual">
     <div class="visual_left">
       <div class="visual_box">
         <component

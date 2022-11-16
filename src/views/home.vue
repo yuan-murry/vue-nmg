@@ -1,8 +1,10 @@
 <template>
-  <div style="height: 100%">
-    <div class="head_top">
-      <div class="index_nav">
-        <ul style="height: 30px; margin-bottom: 0px">
+  <div class="ksh">
+    <div
+      style="position: absolute; top: 0; z-index: 11; width: 100%; height: 100%"
+    >
+      <div class="head_top">
+        <div class="index_nav">
           <li class="l_left lone" @click="changeContent('smz')">
             <span @click="change(0)" :class="{ active: currentIndex === 0 }"
               >统计实名制</span
@@ -59,20 +61,22 @@
               >电子档案</span
             >
           </li>
-        </ul>
-
-        <div class="clear"></div>
+          <div class="clear"></div>
+        </div>
       </div>
-    </div>
-    <div class="visual">
+      <!-- 主题切换 -->
+      <div class="changecolor">
+        <div @click="changeTheme('blue')" class="cblue"></div>
+        <div @click="changeTheme('green')" class="cgreen"></div>
+        <div @click="changeTheme('red')" class="cred"></div>
+      </div>
       <router-view></router-view>
     </div>
-
-    <div class="clear"></div>
   </div>
 </template>
 <script>
 import { Message } from "iview";
+import Sever from "@/api/selfApi";
 export default {
   data() {
     return {
@@ -80,15 +84,41 @@ export default {
     };
   },
   methods: {
+    async saveTheme(val) {
+      await Sever.smz
+        .saveTheme({"theme":val})
+        .then((res) => {
+          if (res == "success") {
+            Message.info("保存成功");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          Message.info("保存失败");
+        });
+    },
+    changeTheme(val) {
+      if (val == "green") {
+        Message.info("该功能暂未开放功能");
+        return;
+      } else {
+        document.getElementById("theme").href = `/css/skin_${val}.css`;
+        if (document.getElementById("theme_bg") != null) {
+          document.getElementById("theme_bg").remove();
+        }
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = `/js/bg_${val}.js`;
+        script.id = "theme_bg";
+        document.getElementsByTagName("body")[0].appendChild(script);
+        this.$store.dispatch("changeTheme", val);
+        this.saveTheme(val);
+      }
+    },
     changeContent(val) {
       if (val != "smz") {
         // this.$router.push({ name: "smz" });
-        document.getElementById("theme").href = "/css/visual_red.css";
-        this.$store.dispatch("changeTheme", "red");
         Message.info("该菜单暂未开放功能");
-      } else {
-        document.getElementById("theme").href = "/css/visual_dark.css";
-        this.$store.dispatch("changeTheme", "dark");
       }
     },
     change(index) {
@@ -97,8 +127,9 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .active {
-  color: #f4a460;
+  color: #66ffff;
 }
 </style>
