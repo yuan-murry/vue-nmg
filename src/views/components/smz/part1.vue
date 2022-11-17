@@ -1,7 +1,7 @@
 <template>
   <div class="lineback">
-    <select-part :MenuText="MenuText" :partName = "partName"/>
-    <digitalFlop :number="1234567" />
+    <select-part :MenuText="MenuText" :partName="partName" />
+    <digitalFlop />
   </div>
 </template>
 <script>

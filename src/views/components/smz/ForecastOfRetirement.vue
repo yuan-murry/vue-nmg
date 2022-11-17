@@ -5,13 +5,13 @@
       :loading="loadflag"
       :loading-options="flightLoadingOptions"
       :manual-update="false"
+      :theme="this.$store.state.theme"
       :option="option"
     />
   </div>
 </template>
 <script>
-import Sever from '@/api/selfApi' 
-import * as echarts from "echarts";
+import Sever from "@/api/selfApi";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import { LineChart } from "echarts/charts";
@@ -53,79 +53,51 @@ export default {
   },
   methods: {
     setChart() {
-      var fontColor = "#30eee9";
       const option = {
-        grid: {
-          left: "1%",
-          right: "1%",
-          top: "20%",
-          bottom: "1%",
-          containLabel: true,
-        },
         tooltip: {
-          show: true,
-          trigger: "item",
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+            label: {
+              backgroundColor: "#6a7985",
+            },
+          },
         },
         legend: {
-          show: false,
-          x: "center",
-          y: "35",
-          icon: "stack",
-          itemWidth: 10,
-          itemHeight: 10,
-          textStyle: {
-            color: "#1bb4f6",
-          },
+          data: ["人数"],
+        },
+        grid: {
+          left: "1%",
+          right: "3%",
+          bottom: "0%",
+          top: "8%",
+          containLabel: true,
+          z: 22,
         },
         xAxis: [
           {
             type: "category",
             boundaryGap: false,
-            axisLabel: {
-              color: fontColor,
-            },
-            axisLine: {
-              show: true,
-              lineStyle: {
-                color: "#397cbc",
-              },
-            },
-            axisTick: {
+            data: ["2022", "2023", "2024", "2025", "2026"],
+            splitLine: {
               show: false,
             },
-            splitLine: {
-              show: true,
-              lineStyle: {
-                color: "#195384",
+            axisLabel: {
+              textStyle: {
+                color: "#fff", //坐标值得具体的颜色
               },
             },
-            data: ["2022", "2023", "2024", "2025", "2026"],
           },
         ],
         yAxis: [
           {
             type: "value",
-            name: "人数(个)",
-            min: 0,
-            max: 500,
-            axisLabel: {
-              formatter: "{value}",
-              textStyle: {
-                color: "#2ad1d2",
-              },
-            },
-            axisLine: {
-              lineStyle: {
-                color: "#27b4c2",
-              },
-            },
-            axisTick: {
+            splitLine: {
               show: false,
             },
-            splitLine: {
-              show: true,
-              lineStyle: {
-                color: "#11366e",
+            axisLabel: {
+              textStyle: {
+                color: "#fff", //坐标值得具体的颜色
               },
             },
           },
@@ -134,39 +106,13 @@ export default {
           {
             name: "人数",
             type: "line",
-            stack: "总量",
-            symbol: "circle",
-            symbolSize: 8,
-            itemStyle: {
-              normal: {
-                color: "#0092f6",
-                lineStyle: {
-                  color: "#0092f6",
-                  width: 1,
-                },
-                areaStyle: {
-                  //color: '#94C9EC'
-                  color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                    {
-                      offset: 0,
-                      color: "rgba(7,44,90,0.3)",
-                    },
-                    {
-                      offset: 1,
-                      color: "rgba(0,146,246,0.9)",
-                    },
-                  ]),
-                },
-              },
+            stack: "Total",
+            smooth: true,
+            areaStyle: {},
+            emphasis: {
+              focus: "series",
             },
-            markPoint: {
-              itemStyle: {
-                normal: {
-                  color: "red",
-                },
-              },
-            },
-            data: [120, 232, 301, 134, 90],
+            data: [101, 134, 90, 230, 210],
           },
         ],
       };
@@ -178,13 +124,13 @@ export default {
         //请求后台接口
         const res = await Sever.smz.getTest({
           //请求参数
-          dep_code: '45000'
-        })
-       if(res){
-            console.log('请求成功了。。。。。',res)
-       }
+          dep_code: "45000",
+        });
+        if (res) {
+          console.log("请求成功了。。。。。", res);
+        }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
   },

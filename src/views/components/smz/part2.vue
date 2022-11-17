@@ -5,31 +5,35 @@
       <div class="sfzcll_pos_box">
         <div class="sfzcll_smallBk">
           <div class="ygl">
-            <h6>行政编制核定数</h6>
-            <span>4347.2万</span>
-            <div class="curbg"></div>
+            <div class="con">
+              <h6>行政编制核定数</h6>
+              <span>4347.2万</span>
+            </div>
           </div>
         </div>
         <div class="sfzcll_smallBk">
           <div class="ygl">
-            <h6>行政编制实有人数</h6>
-            <span>4347.2万</span>
-            <div class="curbg"></div>
+            <div class="con">
+              <h6>行政编制实有人数</h6>
+              <span>4347.2万</span>
+            </div>
           </div>
         </div>
         <div class="sfzcll_smallBk">
           <div class="ygl">
-            <h6>事业编制核定数</h6>
-            <span class="yellow">4347.2万</span>
-            <div class="curbg"></div>
+            <div class="con">
+              <h6>事业编制核定数</h6>
+              <span class="yellow">4347.2万</span>
+            </div>
           </div>
         </div>
 
         <div class="sfzcll_smallBk">
           <div class="ygl">
-            <h6>事业编制实有人数</h6>
-            <span class="yellow">4347.2万</span>
-            <div class="curbg"></div>
+            <div class="con">
+              <h6>事业编制实有人数</h6>
+              <span class="yellow">4347.2万</span>
+            </div>
           </div>
         </div>
         <div class="clear"></div>

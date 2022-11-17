@@ -101,7 +101,16 @@ export default {
         });
         if (res) {
           console.log("请求成功22了。。。。。", res);
-          this.option.title[1].subtext = `{line_one|常驻人口：`+Math.ceil(Math.random()*10000)+`万}\n\n\n{line_two|地区面积：`+Math.ceil(Math.random()*10000)+`平方公里}\n\n\n{line_three|地区GDP：`+Math.ceil(Math.random()*10000)+`亿元}\n\n\n{line_one|财政收入：`+Math.ceil(Math.random()*10000)+`亿元}`;
+          this.option.title[1].subtext =
+            `{line_one|常驻人口：` +
+            Math.ceil(Math.random() * 10000) +
+            `万}\n\n\n{line_two|地区面积：` +
+            Math.ceil(Math.random() * 10000) +
+            `平方公里}\n\n\n{line_three|地区GDP：` +
+            Math.ceil(Math.random() * 10000) +
+            `亿元}\n\n\n{line_one|财政收入：` +
+            Math.ceil(Math.random() * 10000) +
+            `亿元}`;
         }
       } catch (error) {
         console.log(error);
@@ -154,22 +163,22 @@ export default {
       ];
 
       var domImg = document.createElement("img");
+      domImg.id = "map_normalc";
       domImg.style.height =
         domImg.height =
         domImg.width =
         domImg.style.width =
           "8px";
-      domImg.src =
-        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAIAAAAmKNuZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ4IDc5LjE2NDAzNiwgMjAxOS8wOC8xMy0wMTowNjo1NyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkE4MTE0OTgyQTdDQzExRUI4Q0RBRkMwQkFGMTY2NDhEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkE4MTE0OTgzQTdDQzExRUI4Q0RBRkMwQkFGMTY2NDhEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QTgxMTQ5ODBBN0NDMTFFQjhDREFGQzBCQUYxNjY0OEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QTgxMTQ5ODFBN0NDMTFFQjhDREFGQzBCQUYxNjY0OEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4v4trwAAAAVklEQVR42mL0D225cu0hAzWAjpY8C9CsL19/wIV4uDnI5gKNYmKgKhjcxrFAggBZiBIuyDhqRQWQOxoVo1ExGhWjUTEaFYMiKoB1LVq1TXZUAI0CCDAAcAlaxCt7dtQAAAAASUVORK5CYII=";
+      domImg.src = `/map/map_${this.$store.state.theme}.png`;
       document.body.append(domImg);
       var domImgHover = document.createElement("img");
+      domImgHover.id = "map_deepc";
       domImgHover.style.height =
         domImgHover.height =
         domImgHover.width =
         domImgHover.style.width =
           "8px";
-      domImgHover.src =
-        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAIAAAAmKNuZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ4IDc5LjE2NDAzNiwgMjAxOS8wOC8xMy0wMTowNjo1NyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFDQ0Q2RjYyQTdDRDExRUI4ODUxRDIxRjkzMEExNzg2IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFDQ0Q2RjYzQTdDRDExRUI4ODUxRDIxRjkzMEExNzg2Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUNDRDZGNjBBN0NEMTFFQjg4NTFEMjFGOTMwQTE3ODYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUNDRDZGNjFBN0NEMTFFQjg4NTFEMjFGOTMwQTE3ODYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6FboimAAAASklEQVR42mIUnL9XtHsDAzXA69IARjWtXJYX7+FCfyQEKeEyMVAVDG7jWCB+RhaihAsybjQqRqNiNCpGo2I0KoZZVDBSt9oGCDAAhYNrvRu3DWEAAAAASUVORK5CYII=";
+      domImgHover.src = `/map/map_${this.$store.state.theme}_deep.png`;
       document.body.append(domImgHover);
 
       let option = {
@@ -273,7 +282,8 @@ export default {
             },
             itemStyle: {
               normal: {
-                borderColor: "#2ab8ff",
+                borderColor:
+                  this.$store.state.theme == "blue" ? "#2ab8ff" : "#fff7a1",
                 borderWidth: 1,
                 areaColor: {
                   image: domImg,
@@ -289,7 +299,8 @@ export default {
                   image: domImgHover,
                   repeat: "repeat",
                 },
-                borderColor: "#2ab8ff",
+                borderColor:
+                  this.$store.state.theme == "blue" ? "#2ab8ff" : "#fff7a1",
                 borderWidth: 1,
                 shadowColor: "rgba(0, 255, 255, 0.7)",
                 shadowBlur: 10,
@@ -466,6 +477,20 @@ export default {
       this.loadflag = false;
       this.option = option;
       // myChart.setOption(option);
+    },
+  },
+  watch: {
+    "$store.state.theme"(newVal) {
+      //对数据执行操作
+      document.getElementById("map_normalc").src = `/map/map_${newVal}.png`;
+      document.getElementById("map_deepc").src = `/map/map_${newVal}_deep.png`;
+      if (newVal == "red") {
+        this.option.series[0].itemStyle.normal.borderColor = "red";
+        this.option.series[0].itemStyle.emphasis.borderColor = "red";
+      } else if (newVal == "blue") {
+        this.option.series[0].itemStyle.normal.borderColor = "#2ab8ff";
+        this.option.series[0].itemStyle.emphasis.borderColor = "#2ab8ff";
+      }
     },
   },
 };
