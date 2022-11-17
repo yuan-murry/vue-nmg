@@ -139,6 +139,8 @@ body {
   flex: 3;
   height: 100%;
   margin: 0;
+  width:100%;
+  overflow: hidden;
 }
 .visual_con {
   flex: 4;
