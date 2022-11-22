@@ -7,25 +7,42 @@ Vue.use(Router)
 const originalPush = Router.prototype.push
 // 修改原型对象中的push方法
 Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
+    return originalPush.call(this, location).catch(err => err)
 }
 const router = new Router({
-    linkActiveClass:'active',
+    linkActiveClass: 'active',
     routes: [
         {
             path: '/',
-            redirect: '/smz'
+            redirect: '/screenList',
+            component: () => import('@/views/components/manage/manage'),
+            name:'manage',
+            children: [
+                {
+                    path: '/screenList',
+                    name: 'screenList',
+                    component: () => import('@/views/components/manage/screenList')
+                },
+                {
+                    path: '/imageList',
+                    name: 'imageList',
+                    component: () => import('@/views/components/manage/imageList')
+                },
+            ]
+
         },
+
         {
-            path: '',
+            path: '/home',
             name: 'home',
             component: home,
+            redirect:'/smz',
             children: [
                 {
                     path: '/smz',
                     name: 'smz',
                     component: () => import('@/views/smz')
-                }
+                },
             ]
         }
     ]

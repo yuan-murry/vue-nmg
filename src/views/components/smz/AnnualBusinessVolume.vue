@@ -5,7 +5,7 @@
       :loading="loadflag"
       :loading-options="flightLoadingOptions"
       :manual-update="false"
-      :theme="this.$store.state.theme"
+      theme="blue"
       :option="option"
     />
   </div>

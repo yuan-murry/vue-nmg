@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <transition name="turn-on">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -14,6 +16,7 @@ export default {
   },
   mounted() {
     this.initGlobalMenu();
+    // this.delay();
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.resizeFn);
@@ -30,26 +33,45 @@ export default {
       link.rel = "stylesheet";
       link.href = `/css/skin_blue.css`;
       document.getElementsByTagName("head")[0].appendChild(link);
-      // let script = document.createElement("script");
-      // script.type = "text/javascript";
-      // script.src = "/js/bg_blue.js";
-      // script.id = "theme_bg";
-      // document.getElementsByTagName("body")[0].appendChild(script);
+    },
+    delay() {
+      var t;
+      clearTimeout(t);
+      t = setTimeout(function () {
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "/js/bg_blue.js";
+        document.getElementsByTagName("body")[0].appendChild(script);
+      }, 4000);
     },
   },
 };
 </script>
 
 <style lang="less">
-html,
+body {
+  width: 100%;
+  height: 100%;
+}
 html {
   font-size: 20px;
+  width: 100%;
+  height: 100%;
 }
 
 #app {
   height: 100%;
+  width: 100%;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.turn-on-enter {
+  transform: translate3d(100%, 0, 0);
+}
+.turn-on-enter-active,
+.turn-on-leave-active {
+  transition: transform 1.5s ease;
+}
+
 </style>

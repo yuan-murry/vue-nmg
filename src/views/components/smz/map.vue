@@ -169,7 +169,7 @@ export default {
         domImg.width =
         domImg.style.width =
           "8px";
-      domImg.src = `/map/map_${this.$store.state.theme}.png`;
+      domImg.src = `/map/map_blue.png`;
       document.body.append(domImg);
       var domImgHover = document.createElement("img");
       domImgHover.id = "map_deepc";
@@ -178,7 +178,7 @@ export default {
         domImgHover.width =
         domImgHover.style.width =
           "8px";
-      domImgHover.src = `/map/map_${this.$store.state.theme}_deep.png`;
+      domImgHover.src = `/map/map_blue_deep.png`;
       document.body.append(domImgHover);
 
       let option = {
@@ -282,8 +282,7 @@ export default {
             },
             itemStyle: {
               normal: {
-                borderColor:
-                  this.$store.state.theme == "blue" ? "#2ab8ff" : "#fff7a1",
+                borderColor: "#2ab8ff",
                 borderWidth: 1,
                 areaColor: {
                   image: domImg,
@@ -299,8 +298,7 @@ export default {
                   image: domImgHover,
                   repeat: "repeat",
                 },
-                borderColor:
-                  this.$store.state.theme == "blue" ? "#2ab8ff" : "#fff7a1",
+                borderColor: "#2ab8ff",
                 borderWidth: 1,
                 shadowColor: "rgba(0, 255, 255, 0.7)",
                 shadowBlur: 10,
@@ -479,20 +477,20 @@ export default {
       // myChart.setOption(option);
     },
   },
-  watch: {
-    "$store.state.theme"(newVal) {
-      //对数据执行操作
-      document.getElementById("map_normalc").src = `/map/map_${newVal}.png`;
-      document.getElementById("map_deepc").src = `/map/map_${newVal}_deep.png`;
-      if (newVal == "red") {
-        this.option.series[0].itemStyle.normal.borderColor = "red";
-        this.option.series[0].itemStyle.emphasis.borderColor = "red";
-      } else if (newVal == "blue") {
-        this.option.series[0].itemStyle.normal.borderColor = "#2ab8ff";
-        this.option.series[0].itemStyle.emphasis.borderColor = "#2ab8ff";
-      }
-    },
-  },
+  // watch: {
+  //   "$store.state.theme"(newVal) {
+  //     //对数据执行操作
+  //     document.getElementById("map_normalc").src = `/map/map_${newVal}.png`;
+  //     document.getElementById("map_deepc").src = `/map/map_${newVal}_deep.png`;
+  //     if (newVal == "red") {
+  //       this.option.series[0].itemStyle.normal.borderColor = "red";
+  //       this.option.series[0].itemStyle.emphasis.borderColor = "red";
+  //     } else if (newVal == "blue") {
+  //       this.option.series[0].itemStyle.normal.borderColor = "#2ab8ff";
+  //       this.option.series[0].itemStyle.emphasis.borderColor = "#2ab8ff";
+  //     }
+  //   },
+  // },
 };
 </script>
 <style scoped>

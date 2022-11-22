@@ -5,7 +5,7 @@
       :loading="loadflag"
       :loading-options="flightLoadingOptions"
       :manual-update="false"
-      :theme="this.$store.state.theme"
+      theme="blue"
       :option="option"
     />
   </div>
@@ -64,7 +64,7 @@ export default {
           },
         },
         legend: {
-          data: ["人数"],
+          data: ["退休人数"],
         },
         grid: {
           left: "1%",
@@ -104,7 +104,7 @@ export default {
         ],
         series: [
           {
-            name: "人数",
+            name: "退休人数",
             type: "line",
             stack: "Total",
             smooth: true,

@@ -6,7 +6,6 @@ export default new Vuex.Store({
     state: { //唯一数据源，我理解为声明全局变量
         menus: { part1: 'part1', part2: 'part2', part3: 'part3', part6: 'part6', part7: 'part7', part8: 'part8' },
         theme: "blue",
-        mapc:"red"
     },
     getters: {//针对state数据的过滤，
 
@@ -28,11 +27,11 @@ export default new Vuex.Store({
                 if (res.theme != null) {
                     state.theme = res.theme
                     document.getElementById("theme").href = `/css/skin_${res.theme}.css`;
-                    let script = document.createElement("script");
-                    script.type = "text/javascript";
-                    script.src = `/js/bg_${res.theme}.js`;
-                    script.id = "theme_bg";
-                    document.getElementsByTagName("body")[0].appendChild(script);
+                    // let script = document.createElement("script");
+                    // script.type = "text/javascript";
+                    // script.src = `/js/bg_${res.theme}.js`;
+                    // script.id = "theme_bg";
+                    // document.getElementsByTagName("body")[0].appendChild(script);
                 }
 
             }).catch(err => {

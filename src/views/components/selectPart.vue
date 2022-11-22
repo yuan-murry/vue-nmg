@@ -1,7 +1,7 @@
 <template>
   <div class="visual_title">
     <Dropdown @on-click="changePart">
-      <a href="javascript:void(0)" v-html="this.PartMenuText"> </a>
+      <a href="javascript:void(0)">{{this.PartMenuText}}<Icon type="ios-arrow-down"></Icon></a>
       <DropdownMenu slot="list">
         <DropdownItem name="part1" :selected="PartMenuText == '累计办理业务笔数'"
           >累计办理业务笔数</DropdownItem

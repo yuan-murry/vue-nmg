@@ -1,8 +1,6 @@
 <template>
   <div class="ksh">
-    <div
-      style="position: absolute; top: 0; z-index: 11; width: 100%; height: 100%"
-    >
+    <div style="position: absolute; top: 0; z-index: 11; width: 100%; height: 100%">
       <div class="head_top">
         <div class="index_nav">
           <li class="l_left lone" @click="changeContent('smz')">
@@ -31,9 +29,7 @@
             >
           </li>
           <li class="m_middle">
-            内蒙古机构编制<span style="font-style: italic; font-size: 48px"
-              >数字</span
-            >
+            内蒙古机构编制<span style="font-style: italic; font-size: 48px">数字</span>
             一体化平台
           </li>
           <li class="r_right rone" @click="changeContent('others')">
@@ -65,13 +61,14 @@
         </div>
       </div>
       <!-- 主题切换 -->
-      <div class="changecolor">
+      <!-- <div class="changecolor">
         <div @click="changeTheme('blue')" class="cblue"></div>
         <div @click="changeTheme('green')" class="cgreen"></div>
         <div @click="changeTheme('red')" class="cred"></div>
-      </div>
+      </div> -->
       <router-view></router-view>
     </div>
+    <canvas id="canvas" style="position: absolute; top: 0; left: 0; width: 99%"></canvas>
   </div>
 </template>
 <script>
@@ -83,10 +80,31 @@ export default {
       currentIndex: 0,
     };
   },
+  created() {
+    this.checkTime();
+  },
   methods: {
+    checkTime() {
+      const id = this.$route.query.id;
+      if (id) {
+        let data = new Date();
+        let now = data.getTime();
+        let time = (now - id) / 1000 / 60;
+        if (time >= 2) {
+          Message.loading({
+            content: "请从管理端进入",
+            duration: 0,
+          });
+        } else {
+          this.isVisible = true;
+        }
+      } else {
+        Message.error("请从管理端进入");
+      }
+    },
     async saveTheme(val) {
       await Sever.smz
-        .saveTheme({"theme":val})
+        .saveTheme({ theme: val })
         .then((res) => {
           if (res == "success") {
             Message.info("保存成功");
@@ -97,24 +115,24 @@ export default {
           Message.info("保存失败");
         });
     },
-    changeTheme(val) {
-      if (val == "green") {
-        Message.info("该功能暂未开放功能");
-        return;
-      } else {
-        document.getElementById("theme").href = `/css/skin_${val}.css`;
-        if (document.getElementById("theme_bg") != null) {
-          document.getElementById("theme_bg").remove();
-        }
-        let script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = `/js/bg_${val}.js`;
-        script.id = "theme_bg";
-        document.getElementsByTagName("body")[0].appendChild(script);
-        this.$store.dispatch("changeTheme", val);
-        this.saveTheme(val);
-      }
-    },
+    // changeTheme(val) {
+    //   if (val == "green") {
+    //     Message.info("该功能暂未开放功能");
+    //     return;
+    //   } else {
+    //     document.getElementById("theme").href = `/css/skin_${val}.css`;
+    //     if (document.getElementById("theme_bg") != null) {
+    //       document.getElementById("theme_bg").remove();
+    //     }
+    //     let script = document.createElement("script");
+    //     script.type = "text/javascript";
+    //     script.src = `/js/bg_${val}.js`;
+    //     script.id = "theme_bg";
+    //     document.getElementsByTagName("body")[0].appendChild(script);
+    //     this.$store.dispatch("changeTheme", val);
+    //     this.saveTheme(val);
+    //   }
+    // },
     changeContent(val) {
       if (val != "smz") {
         // this.$router.push({ name: "smz" });
