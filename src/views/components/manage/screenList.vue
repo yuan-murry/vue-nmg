@@ -20,13 +20,22 @@
             蓝色主题<Icon color="green" size="30" type="md-checkmark" />
           </div>
           <div class="editMask">
-            <div style="text-align: center; line-height: 240px">
+            <div style="text-align: center; line-height: 140px">
               <Button
                 type="success"
                 shape="circle"
                 icon="ios-create-outline"
                 @click="toDesign('item')"
                 >设 计</Button
+              >
+            </div>
+            <div style="text-align: center; line-height: 40px">
+              <Button
+                type="info"
+                shape="circle"
+                icon="ios-checkmark-circle-outline"
+                @click="chooseTheme('item')"
+                >应 用</Button
               >
             </div>
           </div>
@@ -46,6 +55,10 @@ export default {
       let data = new Date();
       let now = data.getTime();
       window.open("/#/home?id=" + now);
+    },
+    chooseTheme(item) {
+      console.log(item);
+      this.$Message.info("应用主题成功");
     },
   },
 };

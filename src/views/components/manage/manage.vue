@@ -42,7 +42,9 @@
             size="24"
           ></Icon>
         </Header>
-        <Content :style="{ margin: '20px', background: '#fff', minHeight: '260px' }">
+        <Content
+          :style="{ margin: '20px', background: '#fff', minHeight: '260px' }"
+        >
           <router-view />
         </Content>
       </Layout>

@@ -1,6 +1,8 @@
 <template>
   <div class="ksh">
-    <div style="position: absolute; top: 0; z-index: 11; width: 100%; height: 100%">
+    <div
+      style="position: absolute; top: 0; z-index: 11; width: 100%; height: 100%"
+    >
       <div class="head_top">
         <div class="index_nav">
           <li class="l_left lone" @click="changeContent('smz')">
@@ -29,7 +31,9 @@
             >
           </li>
           <li class="m_middle">
-            内蒙古机构编制<span style="font-style: italic; font-size: 48px">数字</span>
+            内蒙古机构编制<span style="font-style: italic; font-size: 48px"
+              >数字</span
+            >
             一体化平台
           </li>
           <li class="r_right rone" @click="changeContent('others')">
@@ -68,7 +72,10 @@
       </div> -->
       <router-view></router-view>
     </div>
-    <canvas id="canvas" style="position: absolute; top: 0; left: 0; width: 99%"></canvas>
+    <canvas
+      id="canvas"
+      style="position: absolute; top: 0; left: 0; width: 99%"
+    ></canvas>
   </div>
 </template>
 <script>
@@ -94,14 +101,41 @@ export default {
           Message.loading({
             content: "请从管理端进入",
             duration: 0,
+            closable: true,
           });
         } else {
-          this.isVisible = true;
+          this.initGlobalMenu();
+          this.delay();
         }
       } else {
-        Message.error("请从管理端进入");
+        Message.error({
+          content: "请从管理端进入",
+          duration: 0,
+          closable: true,
+        });
       }
     },
+    async initGlobalMenu() {
+      this.$store.dispatch("getMenus");
+      //`./css/theme_${type}.css`
+      let link = document.createElement("link");
+      link.type = "text/css";
+      link.id = "theme";
+      link.rel = "stylesheet";
+      link.href = `/css/skin_blue.css`;
+      document.getElementsByTagName("head")[0].appendChild(link);
+    },
+    delay() {
+      var t;
+      clearTimeout(t);
+      t = setTimeout(function () {
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "/js/bg_blue.js";
+        document.getElementsByTagName("body")[0].appendChild(script);
+      }, 4000);
+    },
+
     async saveTheme(val) {
       await Sever.smz
         .saveTheme({ theme: val })

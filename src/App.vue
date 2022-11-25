@@ -15,7 +15,7 @@ export default {
     };
   },
   mounted() {
-    this.initGlobalMenu();
+    // this.initGlobalMenu();
     // this.delay();
   },
   beforeDestroy() {

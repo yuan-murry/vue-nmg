@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/views/home';
+import login from '@/views/components/login';
 
 Vue.use(Router)
 // 获取原型对象上的push函数
@@ -16,7 +17,7 @@ const router = new Router({
             path: '/',
             redirect: '/screenList',
             component: () => import('@/views/components/manage/manage'),
-            name:'manage',
+            name: 'manage',
             children: [
                 {
                     path: '/screenList',
@@ -36,7 +37,7 @@ const router = new Router({
             path: '/home',
             name: 'home',
             component: home,
-            redirect:'/smz',
+            redirect: '/smz',
             children: [
                 {
                     path: '/smz',
@@ -44,6 +45,12 @@ const router = new Router({
                     component: () => import('@/views/smz')
                 },
             ]
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: login,
+
         }
     ]
 })
