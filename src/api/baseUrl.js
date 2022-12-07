@@ -1,6 +1,7 @@
 let baseUrl = ''
 const baseUrl1 = 'http://localhost:8089'
 const baseUrl2 = 'http://39.105.98.177:8189'
+export const baseReqUrl = '/api/api'
 const dev = process.env.NODE_ENV === 'development'
 const test = process.env.NODE_ENV === 'test'
 if (process.env.NODE_ENV === 'production') {

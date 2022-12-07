@@ -49,7 +49,6 @@ Util.ajax.interceptors.response.use(
     } else {
       const { status, message, data } = response
       // console.log('###',data)
-
       if (status != 200) {
         Message({
           message: message,
@@ -126,6 +125,14 @@ export default {
       url: url,
       params: data,
       responseType: 'blob'
+    })
+  },
+
+  delete(url, data) {
+    return Util.ajax({
+      method: 'delete',
+      url: url,
+      params: data
     })
   }
 }

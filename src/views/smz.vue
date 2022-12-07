@@ -3,7 +3,7 @@
     <div class="visual_left">
       <div class="visual_box">
         <component
-          :is="this.$store.state.menus.part1"
+          :is="this.$store.state.menus_blue.part1"
           :partName="partName1"
         ></component>
         <!-- <part-1 @changePart="changePart" /> -->
@@ -11,14 +11,14 @@
       <div class="visual_box">
         <!-- <part-2 /> -->
         <component
-          :is="this.$store.state.menus.part2"
+          :is="this.$store.state.menus_blue.part2"
           :partName="partName2"
         ></component>
       </div>
       <div class="visual_box">
         <!-- <part-3 /> -->
         <component
-          :is="this.$store.state.menus.part3"
+          :is="this.$store.state.menus_blue.part3"
           :partName="partName3"
         ></component>
       </div>
@@ -40,14 +40,14 @@
       <div class="visual_box">
         <!-- <part-6 /> -->
         <component
-          :is="this.$store.state.menus.part6"
+          :is="this.$store.state.menus_blue.part6"
           :partName="partName6"
         ></component>
       </div>
       <div class="visual_box visualSfzsfl">
         <!-- <part-7 /> -->
         <component
-          :is="this.$store.state.menus.part7"
+          :is="this.$store.state.menus_blue.part7"
           :partName="partName7"
         ></component>
       </div>
@@ -55,7 +55,7 @@
       <div class="visual_box">
         <!-- <part-8 /> -->
         <component
-          :is="this.$store.state.menus.part8"
+          :is="this.$store.state.menus_blue.part8"
           :partName="partName8"
         ></component>
       </div>

@@ -25,7 +25,7 @@
                 type="success"
                 shape="circle"
                 icon="ios-create-outline"
-                @click="toDesign('item')"
+                @click="toDesign('theme_blue')"
                 >设 计</Button
               >
             </div>
@@ -34,8 +34,8 @@
                 type="info"
                 shape="circle"
                 icon="ios-checkmark-circle-outline"
-                @click="chooseTheme('item')"
-                >应 用</Button
+                @click="chooseTheme('theme_blue')"
+                >使 用</Button
               >
             </div>
           </div>
@@ -45,20 +45,31 @@
   </div>
 </template>
 <script>
+import Sever from "@/api/selfApi";
 export default {
   data() {
     return {};
   },
   methods: {
     toDesign(item) {
-      console.log(item);
       let data = new Date();
       let now = data.getTime();
-      window.open("/#/home?id=" + now);
+      window.open("/#/home?theme=" + item + "&id=" + now);
     },
-    chooseTheme(item) {
-      console.log(item);
-      this.$Message.info("应用主题成功");
+    async chooseTheme(item) {
+      await Sever.smz
+        .saveTheme({ theme: item })
+        .then((res) => {
+          if (res.code == 1) {
+            this.$Message.success("使用主题成功");
+            this.loadData();
+          } else {
+            this.$Message.error("使用主题失败");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

@@ -67,7 +67,6 @@
 </template>
 <script>
 import { Message } from "iview";
-import Sever from "@/api/selfApi";
 export default {
   data() {
     return {
@@ -82,12 +81,14 @@ export default {
   },
   methods: {
     checkTime() {
+      const theme = this.$route.query.theme;
       const id = this.$route.query.id;
       if (id) {
         let data = new Date();
         let now = data.getTime();
         let time = (now - id) / 1000 / 60;
-        if (time >= 2) {
+        //暂定为20m
+        if (time >= 20) {
           this.$Spin.show({
             render: (h) => {
               return h("div", [
@@ -103,7 +104,7 @@ export default {
             },
           });
         } else {
-          this.initGlobalMenu();
+          this.initGlobalMenu(theme);
         }
       } else {
         Message.error({
@@ -113,22 +114,10 @@ export default {
         });
       }
     },
-    async initGlobalMenu() {
-      this.$store.dispatch("getMenus");
+    async initGlobalMenu(theme) {
+      this.$store.dispatch("getMenus", theme);
     },
-    async saveTheme(val) {
-      await Sever.smz
-        .saveTheme({ theme: val })
-        .then((res) => {
-          if (res == "success") {
-            Message.info("保存成功");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          Message.info("保存失败");
-        });
-    },
+
     // changeTheme(val) {
     //   if (val == "green") {
     //     Message.info("该功能暂未开放功能");
