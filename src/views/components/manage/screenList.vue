@@ -41,6 +41,46 @@
           </div>
         </div>
       </Col>
+      <Col :span="6">
+        <div
+          class="designItem"
+          :style="{ backgroundImage: 'url(/images_gray/theme_gray.jpg)' }"
+        >
+          <div
+            style="
+              text-indent: 1em;
+              position: absolute;
+              width: 100%;
+              height: 30px;
+              bottom: 0px;
+              background-color: rgba(24, 31, 45, 0.84);
+              font-size: 14px;
+            "
+          >
+            科技主题
+          </div>
+          <div class="editMask">
+            <div style="text-align: center; line-height: 140px">
+              <Button
+                type="success"
+                shape="circle"
+                icon="ios-create-outline"
+                @click="toDesign('theme_gray')"
+                >设 计</Button
+              >
+            </div>
+            <div style="text-align: center; line-height: 40px">
+              <Button
+                type="info"
+                shape="circle"
+                icon="ios-checkmark-circle-outline"
+                @click="chooseTheme('theme_gray')"
+                >使 用</Button
+              >
+            </div>
+          </div>
+        </div>
+      </Col>
     </Row>
   </div>
 </template>
@@ -54,7 +94,11 @@ export default {
     toDesign(item) {
       let data = new Date();
       let now = data.getTime();
-      window.open("/#/home?theme=" + item + "&id=" + now);
+      if (item == "theme_gray") {
+        window.open("/#/homeGray?theme=" + item + "&id=" + now);
+      } else {
+        window.open("/#/home?theme=" + item + "&id=" + now);
+      }
     },
     async chooseTheme(item) {
       await Sever.smz

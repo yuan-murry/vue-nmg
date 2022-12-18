@@ -88,7 +88,7 @@ export default {
         })
         .catch((err) => {
           console.log(err);
-          Message.info("保存失败");
+          Message.error();("保存失败");
         });
     },
   },

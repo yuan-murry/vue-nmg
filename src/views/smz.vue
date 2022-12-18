@@ -108,3 +108,4 @@ export default {
   },
 };
 </script>
+<style scoped src="@/assets/css/skin_blue.css"></style>

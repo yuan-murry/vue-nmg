@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/views/home';
+import homeGray from '@/views/homeGray';
 import login from '@/views/components/login';
 
 Vue.use(Router)
@@ -43,6 +44,19 @@ const router = new Router({
                     path: '/smz',
                     name: 'smz',
                     component: () => import('@/views/smz')
+                },
+            ]
+        },
+        {
+            path: '/homeGray',
+            name: 'homeGray',
+            component: homeGray,
+            redirect: '/smzGray',
+            children: [
+                {
+                    path: '/smzGray',
+                    name: 'smzGray',
+                    component: () => import('@/views/smzGray')
                 },
             ]
         },

@@ -28,6 +28,9 @@ export default {
     },
     saveSort(params) {
       return fetch.post('/api/saveSort', params)
+    },
+    changeLB(params) {
+      return fetch.post('/api/changeLB', params)
     }
   }
 }

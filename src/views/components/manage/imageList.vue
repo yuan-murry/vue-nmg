@@ -2,7 +2,10 @@
   <div class="app-container">
     <Form ref="formItem" :model="formItem" inline>
       <FormItem>
-        <Button type="primary" icon="md-cloud-upload" @click="showForm(false, null)"
+        <Button
+          type="primary"
+          icon="md-cloud-upload"
+          @click="showForm(false, null)"
           >上传资源</Button
         >
       </FormItem>
@@ -13,15 +16,31 @@
           placeholder="查询分组名"
           :transfer="true"
         >
-          <Option v-for="item in ThemeList" :value="item.value" :key="item.value">{{
-            item.label
-          }}</Option>
+          <Option
+            v-for="item in ThemeList"
+            :value="item.value"
+            :key="item.value"
+            >{{ item.label }}</Option
+          >
         </Select>
       </FormItem>
       <FormItem>
         <Button type="primary" icon="ios-search" @click="onSearch">查询</Button>
       </FormItem>
+      <FormItem></FormItem>
+      <FormItem>
+        <i-Switch
+          size="large"
+          v-model="mySwitch"
+          @on-change="SwitchChange"
+          :before-change="beforeChange"
+        >
+          <span slot="open">固定</span>
+          <span slot="close">轮播</span>
+        </i-Switch>
+      </FormItem>
     </Form>
+
     <Table
       border
       :columns="Tcolumns"
@@ -40,7 +59,17 @@
           />
         </viewer>
       </template>
-
+      <template slot-scope="{ row }" slot="fixedImg">
+        <i-Switch
+          size="large"
+          @on-change="chooseFixedImg(row.imgId)"
+          :value="row.isSwitch"
+          :disabled="row.isSwitch"
+        >
+          <Icon type="md-checkmark" slot="open"></Icon>
+          <Icon type="md-close" slot="close"></Icon>
+        </i-Switch>
+      </template>
       <template slot-scope="{ row }" slot="action">
         <Button
           type="primary"
@@ -138,6 +167,7 @@ export default {
           slot: "pic",
           align: "center",
         },
+
         {
           title: "操作",
           slot: "action",
@@ -159,6 +189,7 @@ export default {
         pagePieces: 10,
       },
       tableData: [],
+      mySwitch: false,
     };
   },
   created() {
@@ -174,9 +205,19 @@ export default {
         .getAllImg(this.searchForm)
         .then((res) => {
           if (res.code == 1) {
-            this.AllData = res.data;
+            this.AllData = res.data.imgData;
             //首页内容展示
             this.Tdata = this.AllData.slice(0, this.pageConfig.pagePieces);
+            if (res.data.switchVal) {
+              this.mySwitch = res.data.switchVal;
+              this.Tcolumns.splice(4, 0, {
+                title: "固定",
+                slot: "fixedImg",
+                width: 150,
+                align: "center",
+              });
+            }
+
             // this.Tdata = [
             //   {
             //     filePath: "/yccc/35a1c323ec5040aa82e36b62c1180697.png",
@@ -238,7 +279,8 @@ export default {
     },
     pageChange(page) {
       // 开始节点
-      let startPage = page * this.pageConfig.pagePieces - this.pageConfig.pagePieces;
+      let startPage =
+        page * this.pageConfig.pagePieces - this.pageConfig.pagePieces;
       // 结束节点
       let endPage = page * this.pageConfig.pagePieces;
       // 获取n页的数据
@@ -285,6 +327,60 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    beforeChange() {
+      return new Promise((resolve, reject) => {
+        this.$Modal.confirm({
+          title: "切换确认",
+          content: "您确认要切换轮播状态吗？",
+          onOk: () => {
+            resolve();
+          },
+          onCancel: () => {
+            reject();
+          },
+        });
+      });
+    },
+    SwitchChange(val) {
+      if (val) {
+        this.Tcolumns.splice(4, 0, {
+          title: "固定",
+          slot: "fixedImg",
+          width: 150,
+          align: "center",
+        });
+      } else {
+        this.Tcolumns = this.Tcolumns.filter(function (e) {
+          return e.title != "固定";
+        });
+      }
+
+      this.changeLB(val);
+    },
+    async changeLB(val) {
+      await Sever.smz
+        .changeLB({ switchVal: val })
+        .then((res) => {
+          if (res.code == 1) {
+            this.$Message.success("更改成功");
+          } else {
+            this.$Message.error("获取数据失败");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    chooseFixedImg(imgId) {
+      this.AllData.forEach((e) => {
+        if (e.imgId == imgId) {
+          e.isSwitch = true;
+        } else {
+          e.isSwitch = false;
+        }
+      });
+      this.saveSort();
     },
   },
 };

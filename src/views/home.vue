@@ -1,6 +1,8 @@
 <template>
   <div class="ksh">
-    <div style="position: absolute; top: 0; z-index: 11; width: 100%; height: 100%">
+    <div
+      style="position: absolute; top: 0; z-index: 11; width: 100%; height: 100%"
+    >
       <div class="head_top">
         <div class="index_nav">
           <li class="l_left lone" @click="changeContent('smz')">
@@ -29,7 +31,9 @@
             >
           </li>
           <li class="m_middle">
-            内蒙古机构编制<span style="font-style: italic; font-size: 48px">数字</span>
+            内蒙古机构编制<span style="font-style: italic; font-size: 48px"
+              >数字</span
+            >
             一体化平台
           </li>
           <li class="r_right rone" @click="changeContent('others')">
@@ -62,7 +66,10 @@
       </div>
       <router-view></router-view>
     </div>
-    <canvas id="canvas" style="position: absolute; top: 0; left: 0; width: 99%"></canvas>
+    <canvas
+      id="canvas"
+      style="position: absolute; top: 0; left: 0; width: 99%"
+    ></canvas>
   </div>
 </template>
 <script>
@@ -148,9 +155,9 @@ export default {
   },
 };
 </script>
-
+<style scoped src="@/assets/css/skin_blue.css"></style>
 <style scoped>
-@import url("/css/skin_blue.css");
+/* @import url("/css/skin_blue.css"); */
 .active {
   color: #66ffff;
 }
