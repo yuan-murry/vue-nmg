@@ -2,39 +2,42 @@
   <div class="visual">
     <div class="visual_left">
       <component
-        :is="this.$store.state.menus_blue.part1"
+        :is="this.$store.state.menus_gray.part1"
         :partName="partName1"
       ></component>
       <!-- <part-1 @changePart="changePart" /> -->
       <!-- <part-2 /> -->
       <component
-        :is="this.$store.state.menus_blue.part2"
+        :is="this.$store.state.menus_gray.part2"
         :partName="partName2"
       ></component>
       <!-- <part-3 /> -->
       <component
-        :is="this.$store.state.menus_blue.part3"
+        :is="this.$store.state.menus_gray.part3"
         :partName="partName3"
       ></component>
     </div>
     <div class="visual_con">
       <part-4 @changeDepCode="refreshEcharts" />
-      <part-5 />
+       <component
+        :is="this.$store.state.menus_gray.part5"
+        :partName="partName5"
+      ></component>
     </div>
     <div class="visual_right">
       <!-- <part-6 /> -->
       <component
-        :is="this.$store.state.menus_blue.part6"
+        :is="this.$store.state.menus_gray.part6"
         :partName="partName6"
       ></component>
       <!-- <part-7 /> -->
       <component
-        :is="this.$store.state.menus_blue.part7"
+        :is="this.$store.state.menus_gray.part7"
         :partName="partName7"
       ></component>
       <!-- <part-8 /> -->
       <component
-        :is="this.$store.state.menus_blue.part8"
+        :is="this.$store.state.menus_gray.part8"
         :partName="partName8"
       ></component>
     </div>
@@ -65,6 +68,7 @@ export default {
       partName1: "part1",
       partName2: "part2",
       partName3: "part3",
+      partName5: "part5",
       partName6: "part6",
       partName7: "part7",
       partName8: "part8",

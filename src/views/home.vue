@@ -114,10 +114,19 @@ export default {
           this.initGlobalMenu(theme);
         }
       } else {
-        Message.error({
-          content: "请从管理端进入",
-          duration: 0,
-          closable: true,
+        this.$Spin.show({
+          render: (h) => {
+            return h("div", [
+              h("Icon", {
+                class: "demo-spin-icon-load",
+                props: {
+                  type: "ios-loading",
+                  size: 35,
+                },
+              }),
+              h("div", { style: { fontSize: "18px" } }, ["请从管理端进入"]),
+            ]);
+          },
         });
       }
     },

@@ -4,13 +4,12 @@
     <div class="section section1">
       <div class="index_banner">
         <div class="item" v-for="(item, index) in imgList" :key="index">
-          <div class="items scaleBg">
-            <img
-              v-if="item.filePath"
-              :src="baseReqUrl + '/download?fileId=' + item.filePath"
-            />
-            <img v-else src="/images/default.png" />
-          </div>
+          <img
+            class="items scaleBg"
+            v-if="item.filePath"
+            :src="baseReqUrl + '/download?fileId=' + item.filePath"
+          />
+          <img class="items scaleBg" v-else src="/images/default.png" />
           <div class="inner">
             <div class="block_txt">
               <h2 style="font-size: 30pt">
@@ -33,6 +32,7 @@
         </div>
       </div>
     </div>
+    <Spin size="large" fix v-if="spinShow"></Spin>
   </div>
 </template>
 <script>
@@ -48,6 +48,7 @@ export default {
     return {
       imgList: [],
       baseReqUrl,
+      spinShow: false,
     };
   },
   created() {
@@ -67,6 +68,12 @@ export default {
     },
     showMessage() {
       this.$Message.info("开始进入系统");
+      this.spinShow = true;
+      if (this.$store.state.theme == "theme_blue") {
+        this.$router.push({ path: "/home" });
+      } else if (this.$store.state.theme == "theme_gray") {
+        this.$router.push({ path: "/homeGray" });
+      }
     },
     async loadImgData() {
       await Sever.smz
@@ -91,8 +98,6 @@ export default {
   },
 };
 </script>
-<style scoped>
-@import url("/css/login/index.css");
-@import url("/css/login/slick.css");
-@import url("/css/login/jquery.fullPage.css");
-</style>
+<style scoped src="@/assets/css/login/index.css"></style>
+<style src="@/assets/css/login/slick.css"></style>
+<style src="@/assets/css/login/jquery.fullPage.css"></style>

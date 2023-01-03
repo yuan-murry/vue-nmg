@@ -1,5 +1,7 @@
 <template>
   <div class="visual_box">
+    <div class="xwsxOne"></div>
+    <div class="xwsxTwo"></div>
     <select-part :MenuText="MenuText" :partName="partName" />
     <div class="lineback">
       <annual-business-volume></annual-business-volume>
@@ -7,7 +9,7 @@
   </div>
 </template>
 <script>
-import AnnualBusinessVolume from "@/views/components/smz/AnnualBusinessVolume.vue";
+import AnnualBusinessVolume from "@/views/components/smzGray/AnnualBusinessVolume.vue";
 import selectPart from "@/views/components/selectGrayPart.vue";
 export default {
   props: {

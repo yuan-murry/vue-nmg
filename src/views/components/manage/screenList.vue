@@ -17,7 +17,12 @@
               font-size: 14px;
             "
           >
-            蓝色主题<Icon color="green" size="30" type="md-checkmark" />
+            蓝色主题<Icon
+              v-if="this.$store.state.theme == 'theme_blue'"
+              color="green"
+              size="30"
+              type="md-checkmark"
+            />
           </div>
           <div class="editMask">
             <div style="text-align: center; line-height: 140px">
@@ -57,7 +62,12 @@
               font-size: 14px;
             "
           >
-            科技主题
+            科技主题<Icon
+              v-if="this.$store.state.theme == 'theme_gray'"
+              color="green"
+              size="30"
+              type="md-checkmark"
+            />
           </div>
           <div class="editMask">
             <div style="text-align: center; line-height: 140px">
@@ -90,6 +100,9 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    this.initGlobalTheme();
+  },
   methods: {
     toDesign(item) {
       let data = new Date();
@@ -106,7 +119,7 @@ export default {
         .then((res) => {
           if (res.code == 1) {
             this.$Message.success("使用主题成功");
-            this.loadData();
+            this.$store.dispatch("changeTheme", item);
           } else {
             this.$Message.error("使用主题失败");
           }
@@ -114,6 +127,9 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    async initGlobalTheme() {
+      this.$store.dispatch("getTheme");
     },
   },
 };

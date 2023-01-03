@@ -1,5 +1,7 @@
 <template>
   <div class="visual_box">
+    <div class="xwsxOne"></div>
+    <div class="xwsxTwo"></div>
     <select-part :MenuText="MenuText" :partName="partName" />
     <div class="lineback">
       <div class="visual_chart sfzcll">

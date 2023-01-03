@@ -1,20 +1,23 @@
 <template>
-  <div class="visual_conBot">
+  <div class="visual_box">
+    <div class="xwsxOne"></div>
+    <div class="xwsxTwo"></div>
     <select-part :MenuText="MenuText" :partName="partName" />
     <div class="lineback">
-      <div></div>
+      <problem-type-analysis />
     </div>
   </div>
 </template>
 <script>
 import selectPart from "@/views/components/selectGrayPart.vue";
+import problemTypeAnalysis from "@/views/components/smzGray/problemTypeAnalysis.vue";
 export default {
   props: {
     partName: String,
   },
-  components: { selectPart },
+  components: { selectPart, problemTypeAnalysis },
   data() {
-    return { MenuText: "累计办理业务笔数" };
+    return { MenuText: "问题类型分析" };
   },
 };
 </script>

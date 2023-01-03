@@ -1,8 +1,7 @@
 <template>
-  <div class="ksh">
-    <div
-      style="position: absolute; top: 0; z-index: 11; width: 100%; height: 100%"
-    >
+  <div id="ksh">
+    <div class="jq22-dstar">
+      <div id="holder"></div>
       <div class="head_top">
         <div class="index_nav">
           <li class="l_left lone" @click="changeContent('smz')">
@@ -30,12 +29,7 @@
               >业务协同</span
             >
           </li>
-          <li class="m_middle">
-            内蒙古机构编制<span style="font-style: italic; font-size: 48px"
-              >数字</span
-            >
-            一体化平台
-          </li>
+          <li class="m_middle">内蒙古机构编制<span>数字</span> 一体化平台</li>
           <li class="r_right rone" @click="changeContent('others')">
             <span @click="change(5)" :class="{ active: currentIndex === 5 }"
               >资源汇聚</span
@@ -67,23 +61,18 @@
 
       <router-view></router-view>
     </div>
-    <canvas
-      id="canvas"
-      style="position: absolute; top: 0; left: 0; width: 99%"
-    ></canvas>
   </div>
 </template>
 <script>
 import { Message } from "iview";
+import "@/assets/js/jquery.warpdrive.min.js";
 export default {
   data() {
     return {
       currentIndex: 0,
     };
   },
-  mounted() {
-    require("@/assets/js/bg_blue.js");
-  },
+  mounted() {},
   created() {
     this.checkTime();
   },
@@ -113,12 +102,22 @@ export default {
           });
         } else {
           this.initGlobalMenu(theme);
+          this.loadJS();
         }
       } else {
-        Message.error({
-          content: "请从管理端进入",
-          duration: 0,
-          closable: true,
+        this.$Spin.show({
+          render: (h) => {
+            return h("div", [
+              h("Icon", {
+                class: "demo-spin-icon-load",
+                props: {
+                  type: "ios-loading",
+                  size: 35,
+                },
+              }),
+              h("div", { style: { fontSize: "18px" } }, ["请从管理端进入"]),
+            ]);
+          },
         });
       }
     },
@@ -153,13 +152,61 @@ export default {
     change(index) {
       this.currentIndex = index;
     },
+    loadJS() {
+      let script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "js/animal_gray.js";
+      document.body.appendChild(script);
+    },
   },
 };
 </script>
 <style scoped src="@/assets/css/skin_gray.css"></style>
 <style scoped>
 .active {
-  color: #66ffff;
+  color: #fef500;
+  -webkit-animation: neon5 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon5 1.5s ease-in-out infinite alternate;
+  animation: neon5 1.5s ease-in-out infinite alternate;
+}
+@-webkit-keyframes neon5 {
+  from {
+    text-shadow: 0 0 3px #013564, 0 0 5px #013564, 0 0 7px #013564,
+      0 0 10px #19fffc, 0 0 15px #19fffc, 0 0 25px #19fffc, 0 0 35px #19fffc,
+      0 0 50px #19fffc;
+  }
+
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff9900,
+      0 0 35px #ff9900, 0 0 40px #ff9900, 0 0 50px #ff9900, 0 0 75px #ff9900;
+  }
+}
+
+@-moz-keyframes neon5 {
+  from {
+    text-shadow: 0 0 3px #013564, 0 0 5px #013564, 0 0 7px #013564,
+      0 0 10px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de,
+      0 0 150px #ff00de;
+  }
+
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de,
+      0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+  }
+}
+
+@keyframes neon5 {
+  from {
+    text-shadow: 0 0 3px #013564, 0 0 5px #013564, 0 0 7px #013564,
+      0 0 10px #080dde, 0 0 70px #080dde, 0 0 80px #080dde,
+      0 0 100px #080dde 0 0 150px #080dde;
+  }
+
+  to {
+    text-shadow: 0 0 5px #32bbfb, 0 0 10px #32bbfb, 0 0 15px #32bbfb,
+      0 0 20px #7e00ff, 0 0 35px #7e00ff, 0 0 40px #7e00ff, 0 0 50px #7e00ff,
+      0 0 75px #7e00ff;
+  }
 }
 </style>
 <style>

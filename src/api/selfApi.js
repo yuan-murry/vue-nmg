@@ -8,6 +8,9 @@ export default {
     getMenu(params) {
       return fetch.get('/api/menu', params)
     },
+    getTheme() {
+      return fetch.get('/api/getTheme')
+    },
     saveMenu(params) {
       return fetch.post('/api/saveMenu', params)
     },
