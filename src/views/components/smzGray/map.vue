@@ -43,17 +43,23 @@ export default {
         // 首先向 echarts 注册 SVG 字符串或解析过的 SVG DOM
         echarts.registerMap("nmgmap", { svg: svg });
         option = {
-        //   title: [
-        //     {
-        //       text: _this.textName,
-        //       right: "30%",
-        //       textStyle: {
-        //         color: "#fff",
-        //         fontWeight: "bolder",
-        //         fontSize: 25,
-        //       },
-        //     },
-        //   ],
+          tooltip: {
+            show: true,
+            trigger: "item",
+            backgroundColor: "rgba(166, 200, 76, 0.82)",
+            borderColor: "#FFFFCC",
+          },
+          //   title: [
+          //     {
+          //       text: _this.textName,
+          //       right: "30%",
+          //       textStyle: {
+          //         color: "#fff",
+          //         fontWeight: "bolder",
+          //         fontSize: 25,
+          //       },
+          //     },
+          //   ],
           //   series: [
           //     {
           //       name: "nmgmap",
@@ -77,6 +83,7 @@ export default {
               borderWidth: 0,
             },
             selectedMode: "single",
+
             // emphasis: {
             //   focus: "self",
             //   itemStyle: {

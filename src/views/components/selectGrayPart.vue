@@ -42,12 +42,6 @@
         >
         <DropdownItem
           divided
-          name="part9"
-          :selected="PartMenuText == '分系统编制情况'"
-          >分系统编制情况</DropdownItem
-        >
-        <DropdownItem
-          divided
           name="part5"
           :selected="PartMenuText == '问题类型分析'"
           >问题类型分析</DropdownItem
@@ -83,8 +77,6 @@ export default {
         this.PartMenuText = "分行业事业编制及占比";
       } else if (val == "part8") {
         this.PartMenuText = "近5年退休人员预测";
-      } else if (val == "part9") {
-        this.PartMenuText = "分系统编制情况";
       }
       //TODO 预留全局接口（配置菜单）后台保存选中菜单
       // this.$emit("changePart", val);
@@ -117,6 +109,12 @@ export default {
 };
 </script>
 <style scoped>
+/deep/ .ivu-dropdown-rel {
+  z-index: 900;
+}
+/deep/ .ivu-dropdown .ivu-select-dropdown {
+  z-index: 999;
+}
 a {
   color: #fff;
   font-size: 18px;
